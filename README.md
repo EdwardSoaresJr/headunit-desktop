@@ -1,3 +1,7 @@
+I have created thorough instructions on my website for building and using this software that are missing or unclear otherwise. I struggled quite a bit to get going but felt this software was / is worth it and want to see it evolve as far as possible.
+
+Please visit https://tinkerversity.com for up to date tutorials and information.
+
 # HeadUnit Desktop
 
 [![Support Server](https://img.shields.io/discord/591914197219016707.svg?label=Discord&logo=Discord&colorB=7289da&style=for-the-badge)](https://discord.gg/WpmHjWb64p)
