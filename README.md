@@ -1,3 +1,5 @@
+I am not the author, just a fan, user and soon a contributor as I really like this software and see its potential.
+
 I have created thorough instructions on my website for building and using this software that are missing or unclear otherwise. I struggled quite a bit to get going but felt this software was / is worth it and want to see it evolve as far as possible.
 
 Please visit https://tinkerversity.com for up to date tutorials and information.
