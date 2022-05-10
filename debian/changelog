@@ -1,3 +1,108 @@
+headunit-desktop (0.1-130) unstable; urgency=medium
+
+  * Bring debian package up-to-date with latest commit
+    (6c264c5e8909412f03adfaebb3134425e228224b)
+  * [RPI] Fix backlight brightness
+
+ -- Gino <gino@gino-ubuntu>  Fri, 25 Feb 2022 03:15:30 +0000
+
+headunit-desktop (0.1-129) unstable; urgency=medium
+
+  * Bring debian package up-to-date with latest commit
+    (ffe25d0c426f2201099439c96f1262a0cbd4458e)
+  * [RPI] Fix minimum brightness
+
+ -- Gino <gino@gino-ubuntu>  Fri, 25 Feb 2022 02:54:58 +0000
+
+headunit-desktop (0.1-128) unstable; urgency=medium
+
+  * Bring debian package up-to-date with latest commit
+    (63b4834d2109c0245682dc189cfda642e28f1986)
+  * Fix MediaManager labels
+
+ -- Gino <gino@gino-ubuntu>  Fri, 25 Feb 2022 02:40:16 +0000
+
+headunit-desktop (0.1-127) unstable; urgency=medium
+
+  * Bring debian package up-to-date with latest commit
+    (3c706c752fb35350a294aa17e3b445372aa60a3e)
+  * [AA] Listen to night mode signal and send it to AA
+
+ -- Gino <gino@gino-ubuntu>  Fri, 25 Feb 2022 02:24:21 +0000
+
+headunit-desktop (0.1-126) unstable; urgency=medium
+
+  * Bring debian package up-to-date with latest commit
+    (460264918a8ca3cd964414fa0db46fd9d54afe54)
+  * [Volume] Save output volume and set it on startup
+
+ -- Gino <gino@gino-ubuntu>  Fri, 25 Feb 2022 02:22:06 +0000
+
+headunit-desktop (0.1-125) unstable; urgency=medium
+
+  * Bring debian package up-to-date with latest commit
+    (b928c7439938f477549674a27766e29dfdcc0b6a)
+  * Fix PluginObject segfault
+
+ -- Gino <gino@gino-ubuntu>  Fri, 25 Feb 2022 01:30:18 +0000
+
+headunit-desktop (0.1-124) unstable; urgency=medium
+
+  * Bring debian package up-to-date with latest commit
+    (cf9037d5a9a148972ac7942a48257e319d550d60)
+  * Update theme to latest
+
+ -- Gino <gino@gino-ubuntu>  Thu, 24 Feb 2022 00:58:05 +0000
+
+headunit-desktop (0.1-123) unstable; urgency=medium
+
+  * Bring debian package up-to-date with latest commit
+    (7543acb7d21d545d29b731ad2de997f1f65cfc8b)
+  * Add option to load theme in separate thread (lazy loading) and add
+    CMD option
+
+ -- Gino <gino@gino-ubuntu>  Thu, 24 Feb 2022 00:57:43 +0000
+
+headunit-desktop (0.1-122) unstable; urgency=medium
+
+  * Bring debian package up-to-date with latest commit
+    (3b04347663b7f7f53d82a0aab727eb10c2db054d)
+  * Fix build errors
+
+ -- Gino <gino@gino-ubuntu>  Wed, 23 Feb 2022 00:11:59 +0000
+
+headunit-desktop (0.1-121) unstable; urgency=medium
+
+  * Bring debian package up-to-date with latest commit
+    (7f8c27e97afb9c48d61565f1439cf254d5c89dce)
+  * update default theme
+
+ -- Gino <gino@gino-ubuntu>  Thu, 27 Jan 2022 04:59:59 +0000
+
+headunit-desktop (0.1-120) unstable; urgency=medium
+
+  * Bring debian package up-to-date with latest commit
+    (59343cac749cb39188839f8edac0f0245e2b88cb)
+  * WIP3
+
+ -- Gino <gino@gino-ubuntu>  Thu, 27 Jan 2022 04:58:49 +0000
+
+headunit-desktop (0.1-119) unstable; urgency=medium
+
+  * Bring debian package up-to-date with latest commit
+    (ee65bf00e67017fb28b14f9b7f6c19204a8d9fc9)
+  * WIP2
+
+ -- Gino <gino@gino-ubuntu>  Thu, 27 Jan 2022 04:58:28 +0000
+
+headunit-desktop (0.1-118) unstable; urgency=medium
+
+  * Bring debian package up-to-date with latest commit
+    (4373e808966dc353b6fba1ee4bba43e5c53bfb72)
+  * WIP1
+
+ -- Gino <gino@gino-ubuntu>  Wed, 01 Dec 2021 06:40:43 +0000
+
 headunit-desktop (0.1-117) unstable; urgency=medium
 
   * Bring debian package up-to-date with latest commit

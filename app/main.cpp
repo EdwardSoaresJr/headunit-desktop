@@ -12,17 +12,18 @@
 #include <QSettings>
 #include <QtDebug>
 #include <QLoggingCategory>
-#include <QTime>
 #include <unistd.h>
+#include <QElapsedTimer>
 
 #include "pluginmanager.h"
 #include "thememanager.h"
+#include "panelitemsmodel.h"
 
 Q_DECLARE_LOGGING_CATEGORY(HEADUNIT)
 
 int main(int argc, char *argv[])
 {
-    QTime time;
+    QElapsedTimer time;
     time.start();
     setbuf(stdout, nullptr);
 
@@ -33,11 +34,12 @@ int main(int argc, char *argv[])
 
     QApplication app(argc, argv);
     QLoggingCategory::setFilterRules("");
+    QLoggingCategory::setFilterRules("qt.qml.connections.warning=false");
 
     QQmlApplicationEngine *engine = new QQmlApplicationEngine();
 
     QCommandLineParser parser;
-    parser.setApplicationDescription("helper");
+    parser.setApplicationDescription("viktorgino's HeadUnit Desktop");
     parser.addHelpOption();
     parser.addVersionOption();
     
@@ -47,22 +49,34 @@ int main(int argc, char *argv[])
     );
     parser.addOption(pluginsOption);
 
+    QCommandLineOption lazyLoadingOption(QStringList() << "l" << "lazy-loading",
+                                     QCoreApplication::translate("main", "Load plugins and theme in separate threads (experimental)")
+                                     );
+    parser.addOption(lazyLoadingOption);
+
     parser.process(app);
+
     QString p = parser.value(pluginsOption);
     bool whitelist = parser.isSet(pluginsOption);
     QStringList plugins;
     if (whitelist) {
-	    plugins = p.split(" ",QString::SkipEmptyParts);
+        plugins = p.split(" ",QString::SkipEmptyParts);
     }
 
-    PluginManager pluginManager(engine, whitelist, plugins,&app);
+    bool lazyLoading = parser.isSet(lazyLoadingOption);
 
-    ThemeManager themeManager(engine,"default-theme", &app);
+    qDebug("%lld ms : loading theme", time.elapsed());
+    ThemeManager themeManager(engine, "default-theme", lazyLoading, &app);
+
+    qDebug("%lld ms : loading plugins", time.elapsed());
+    PluginManager pluginManager(engine, &themeManager, plugins, lazyLoading, &app);
 
     QObject::connect(&pluginManager, &PluginManager::themeEvent, &themeManager, &ThemeManager::onEvent);
 
-    qDebug("Loading took : %d ms", time.elapsed());
+    qDebug("%lld ms : Loading theme loader", time.elapsed());
+    engine->load(QUrl(QStringLiteral("qrc:/loader.qml")));
 
+    qDebug("%lld ms : Starting main loop", time.elapsed());
     int ret = app.exec();
 
     return ret;

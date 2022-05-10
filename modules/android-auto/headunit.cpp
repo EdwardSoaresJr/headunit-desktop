@@ -148,6 +148,7 @@ int Headunit::init(){
                                 #ifdef RPI
                                     "alsasink buffer-time=400000 sync=false device-name=\"Android Auto Voice\""
                                 #else
+                                    "volume volume=0.5 !"
                                     "pulsesink name=voicesink sync=true client-name=\"Android Auto Voice\""
                                     "stream-properties=\"props,media.name=AndroidAutoVoice,media.role=music\""
                                 #endif
@@ -510,6 +511,16 @@ void Headunit::setVoiceVolume(uint8_t volume) {
         GstElement *voice_sink = gst_bin_get_by_name(GST_BIN(au1_pipeline), "voicesink");
         g_object_set (voice_sink, "volume", m_voicePipelineVolume / 100.00, NULL);
         gst_object_unref(voice_sink);
+    }
+}
+void Headunit::setNigthmode(bool night) {
+    if(huStarted){
+        HU::SensorEvent sensorEvent;
+        sensorEvent.add_night_mode()->set_is_night(night);
+        g_hu->queueCommand([sensorEvent](AndroidAuto::IHUConnectionThreadInterface& s)
+                           {
+                               s.sendEncodedMessage(0, AndroidAuto::SensorChannel, AndroidAuto::HU_SENSOR_CHANNEL_MESSAGE::SensorEvent, sensorEvent);
+                           });
     }
 }
 

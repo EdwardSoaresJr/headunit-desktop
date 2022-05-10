@@ -5,7 +5,7 @@ import HUDTheme 1.0
 import HUDVolume 1.0
 import QtQuick.Layouts 1.3
 
-Item {
+ThemeRoot {
     id: __root
 
     Item {
@@ -55,10 +55,16 @@ Item {
                 }
 
                 Repeater {
-                    model: SinkModel  {}
+                    model: SinkModel  {
+                    }
                     delegate: DeviceListItem {
                         x :20
                         width: parent.width - 20
+                        onVolumeChanged : {
+                            if (Default) {
+                                pluginContext.setDefaultVolume(volume)
+                            }
+                        }
                     }
                 }
 
@@ -69,7 +75,7 @@ Item {
 
                     Rectangle {
                         height: 1
-                        color: HUDStyle.Colors.formText
+                        color: HUDStyle.colors.formText
                         anchors.left: parent.left
                         anchors.right: parent.right
                         anchors.top: parent.top
@@ -112,7 +118,7 @@ Item {
                     width: parent.width
                     Rectangle {
                         height: 1
-                        color: HUDStyle.Colors.formText
+                        color: HUDStyle.colors.formText
                         anchors.left: parent.left
                         anchors.right: parent.right
                         anchors.top: parent.top
@@ -158,7 +164,7 @@ Item {
                     width: parent.width
                     Rectangle {
                         height: 1
-                        color: HUDStyle.Colors.formText
+                        color: HUDStyle.colors.formText
                         anchors.left: parent.left
                         anchors.right: parent.right
                         anchors.top: parent.top

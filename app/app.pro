@@ -7,9 +7,15 @@ INCLUDEPATH += $${PWD}/includes
 
 include("../config.pri")
 
+CONFIG += qtquickcompiler
+
 SOURCES += main.cpp \
     mediamanager.cpp \
+    panelitemsmodel.cpp \
+    pluginlist.cpp \
+    pluginlistmodel.cpp \
     pluginmanager.cpp \
+    pluginobject.cpp \
     settingsloader.cpp \
     thememanager.cpp
 
@@ -18,7 +24,11 @@ HEADERS += \
     ../includes/hvac-common.h \
     ../includes/mediainterface.h \
     mediamanager.h \
+    panelitemsmodel.h \
+    pluginlist.h \
+    pluginlistmodel.h \
     pluginmanager.h \
+    pluginobject.h \
     settingsloader.h \
     thememanager.h
 
@@ -42,4 +52,10 @@ theme.files += \
 theme.path = $$PREFIX/ 
 
 INSTALLS += target pluginfiles theme
+
+RESOURCES += \
+    main.qrc
+
+DISTFILES += \
+    boot-logo-800x480.png
 
