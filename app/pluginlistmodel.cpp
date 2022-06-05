@@ -41,7 +41,6 @@ void PluginListProxyModel::setType(QString type) {
 
 PluginListModel::PluginListModel(QObject *parent) : QAbstractListModel(parent)
 {
-
 }
 
 QHash<int, QByteArray> PluginListModel::roleNames() const {
@@ -93,11 +92,11 @@ QVariant PluginListModel::data(const QModelIndex &index, int role) const {
     case SettingsMenuRole:
         return plugin->getSettingsItems();
     case BottomBarItemsRole :
-        QList<PluginObject::PanelItem> panelItems = plugin->getBottomBarItems();
+        QList<PanelItem> panelItems = plugin->getBottomBarItems();
 
         QVariantList bottomBarItems;
 
-        for (const PluginObject::PanelItem &panelItem : qAsConst(panelItems)) {
+        for (const PanelItem &panelItem : qAsConst(panelItems)) {
             QVariantMap item;
             item.insert("name", panelItem.name);
             item.insert("label", panelItem.label);
@@ -107,14 +106,29 @@ QVariant PluginListModel::data(const QModelIndex &index, int role) const {
     }
 }
 
+void PluginListModel::onDataChanged() {
+    PluginObject * sender = qobject_cast<PluginObject *> (QObject::sender());
+    if(sender) {
+        int pluginIndex = m_plugins->indexOf(sender);
+        emit dataChanged(index(pluginIndex, 0), index(pluginIndex, 0));
+    }
+}
+
 void PluginListModel::setPlugins(PluginList *plugins) {
     if(plugins){
         beginResetModel();
         m_plugins = plugins;
         endResetModel();
 
-        connect(m_plugins,&PluginList::pluginLoaded, [=](const int pluginIndex) {
-            emit dataChanged(index(pluginIndex, 0), index(pluginIndex, 0));
+        for(int i = 0 ; i < m_plugins->size(); i++){
+            PluginObject * plugin = m_plugins->at(i);
+
+            connect(plugin,&PluginObject::loadedChanged, this, &PluginListModel::onDataChanged);
+            connect(plugin,&PluginObject::sourceChanged, this, &PluginListModel::onDataChanged);
+        }
+        connect(m_plugins,&PluginList::pluginAdded, [=](const int pluginIndex) {
+            beginInsertRows(QModelIndex(), pluginIndex, pluginIndex);
+            endInsertRows();
         });
     }
 }

@@ -10,6 +10,7 @@ class PluginList : public QObject
     Q_OBJECT
 public:
     explicit PluginList(QObject *parent = nullptr);
+    ~PluginList();
 
     void initPlugins();
 
@@ -26,8 +27,7 @@ public:
     Q_INVOKABLE void callSlot(QString pluginName, QString slot);
 signals:
     void pluginLoaded(int index);
-private slots:
-    void pluginLoadedHandler();
+    void pluginAdded(int index);
 private:
     QVector<PluginObject *> m_plugins;
 };
